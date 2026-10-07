@@ -1,0 +1,37 @@
+[DEFAULT]
+banaction = iptables-allports
+ignoreip  = 127.0.0.1/8
+usedns    = no
+backend   = polling
+
+bantime = 10m
+bantime.increment = true
+bantime.factor = 2
+bantime.maxtime = 1d
+bantime.rndtime = 30s
+
+[sshd]
+enabled = false
+
+[sshd-ddos]
+enabled = false
+
+[http-flood]
+enabled  = true
+port     = http,https,8080,8081
+filter   = http-flood
+logpath  = /var/log/nginx/access.log
+maxretry = 60
+findtime = 10s
+
+# Protección extra a nivel de puerto para el servicio de LDAP que utiliza TLS (LDAPS - Puerto 636)
+[ldap-tls]
+enabled   = true
+port      = 636,ldaps
+protocol  = tcp
+banaction = iptables-multiport
+filter    = ldap-tls
+logpath   = /var/log/ldap-tls.log
+maxretry  = 5
+findtime  = 10s
+bantime   = 10m
