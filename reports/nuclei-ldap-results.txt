@@ -1,0 +1,4 @@
+[waf-fuzz:nginxgeneric] [http] [info] http://host.docker.internal:8081/?_=484029\") [whatwaf-payloads="484029\\\") AS xDKy WHERE 5427=5427 UNION ALL SELECT NULL,NULL"]
+[waf-detect:nginxgeneric] [http] [info] http://host.docker.internal:8081
+[options-method] [http] [info] http://host.docker.internal:8081 ["HEAD, POST, GET, OPTIONS"]
+[tech-detect:nginx] [http] [info] http://host.docker.internal:8081
