@@ -79,6 +79,9 @@ ldap-keycloak-oauth2-lab/
 │   ├── app/main.py
 │   ├── Dockerfile
 │   └── requirements.txt
+├── reports/                    # DAST security assessment reports (Nuclei)
+│   ├── nuclei-ldap-results.jsonl
+│   └── nuclei-ldap-results.txt
 ├── docker-compose.yml
 ├── load-ldap-users.sh
 ├── reset.sh
