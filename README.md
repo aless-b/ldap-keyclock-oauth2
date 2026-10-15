@@ -84,3 +84,19 @@ ldap-keycloak-oauth2-lab/
 ├── reset.sh
 └── README.md
 ```
+
+---
+
+## 🔍 Vulnerability & Security Assessment (Nuclei Scan)
+
+Automated dynamic application security testing (DAST) was conducted against the running container using [Nuclei](https://github.com/projectdiscovery/nuclei) with official HTTP vulnerability templates.
+
+| Finding | Severity | Classification | Impact / Description |
+| :--- | :---: | :---: | :--- |
+| **HTTP Methods Exposure (`options-method`)** | **Info** | CWE-200 | The server responds to HTTP `OPTIONS` requests revealing all enabled HTTP methods: `HEAD, POST, GET, OPTIONS`. |
+| **WAF / Traffic Filter Detection (`waf-detect`, `waf-fuzz`)** | **Info** | CWE-200 | Nginx reverse proxy actively inspects and drops malicious SQL injection payloads. |
+| **Web Server Technology Detection (`tech-detect:nginx`)** | **Info** | CWE-200 | Identifies the Nginx reverse proxy protecting the Keycloak authentication service. |
+| **Overall Security Posture:** | **Secure** | — | **No High or Critical vulnerabilities detected**. Keycloak includes hardened security headers by default (CSP, HSTS, `X-Frame-Options: SAMEORIGIN`, and `X-Content-Type-Options: nosniff`). |
+
+> Detailed scan logs are archived under [`reports/nuclei-ldap-results.txt`](reports/nuclei-ldap-results.txt) and [`reports/nuclei-ldap-results.jsonl`](reports/nuclei-ldap-results.jsonl).
+
